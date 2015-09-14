@@ -11,9 +11,13 @@
 @interface ViewController : UIViewController <UIPageViewControllerDelegate,UIPageViewControllerDataSource>
 @property(nonatomic,strong) UIPageViewController *pageViewController;
 @property(nonatomic,assign) BOOL isPageScrollingFlag;
-@property(nonatomic,strong) IBOutlet UISegmentedControl *segmentedControl;
+//@property(nonatomic,strong) IBOutlet UISegmentedControl *segmentedControl;
+@property(nonatomic,copy)   NSArray *controllers;
 @property(nonatomic,assign) NSUInteger currentPageIndex;
 @property(nonatomic,strong) UIScrollView *pageScrollView;
 @property(nonatomic,assign) BOOL hasAppearedFlag;
+
+-(void)changeTabBar:(NSInteger)index;
+
 @end
 

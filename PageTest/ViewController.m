@@ -9,10 +9,12 @@
 #import "ViewController.h"
 #import "FirstViewController.h"
 #import "SecondViewController.h"
+#import "MyTabBarViewController.h"
+#import "MyTabBar.h"
 
 @interface ViewController ()<UIScrollViewDelegate>
 {
-    NSArray *_controllers;
+    
 }
 @end
 
@@ -20,10 +22,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     self.isPageScrollingFlag = NO;
     self.hasAppearedFlag = NO;
-    self.currentPageIndex = 1;
-    [self.segmentedControl addTarget:self action:@selector(segmentedControlChange:) forControlEvents:UIControlEventValueChanged];
+    self.currentPageIndex = 0;
+//    [self.segmentedControl addTarget:self action:@selector(segmentedControlChange:) forControlEvents:UIControlEventValueChanged];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageViewController.delegate = self;
@@ -55,7 +58,7 @@
     self.pageViewController.delegate = self;
     self.pageViewController.dataSource = self;
     
-    [self.pageViewController setViewControllers:@[[_controllers objectAtIndex:1]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    [self.pageViewController setViewControllers:@[[_controllers objectAtIndex:0]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     [self syncScrollView];
     
 }
@@ -97,6 +100,42 @@
     }
 }
 
+-(void)changeTabBar:(NSInteger)index{
+    if (!self.isPageScrollingFlag) {
+        
+        NSInteger tempIndex = self.currentPageIndex;
+        
+        __weak typeof(self) weakSelf = self;
+        
+        //%%% check to see if you're going left -> right or right -> left
+        if (index > tempIndex) {
+            
+            //%%% scroll through all the objects between the two points
+            for (int i = (int)tempIndex+1; i<=index; i++) {
+                [self.pageViewController setViewControllers:@[[_controllers objectAtIndex:i]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL complete){
+                    
+                    //%%% if the action finishes scrolling (i.e. the user doesn't stop it in the middle),
+                    //then it updates the page that it's currently on
+                    if (complete) {
+                        [weakSelf updateCurrentPageIndex:i];
+                    }
+                }];
+            }
+        }
+        
+        //%%% this is the same thing but for going right -> left
+        else if (index < tempIndex) {
+            for (int i = (int)tempIndex-1; i >= index; i--) {
+                [self.pageViewController setViewControllers:@[[_controllers objectAtIndex:i]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:^(BOOL complete){
+                    if (complete) {
+                        [weakSelf updateCurrentPageIndex:i];
+                    }
+                }];
+            }
+        }
+    }
+}
+
 -(void)updateCurrentPageIndex:(int)newIndex {
     self.currentPageIndex = newIndex;
 }
@@ -105,7 +144,12 @@
 -(void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed {
     if (completed) {
         self.currentPageIndex = [_controllers indexOfObject:[pageViewController.viewControllers lastObject]];
-        self.segmentedControl.selectedSegmentIndex = self.currentPageIndex;
+//        self.segmentedControl.selectedSegmentIndex = self.currentPageIndex;
+        MyTabBarViewController *myTabBarVC =  (MyTabBarViewController *)self.tabBarController;
+        MyTabBar *myTabBar = myTabBarVC.myTabBar;
+        UIButton *btn = (UIButton *)[myTabBar viewWithTag:self.currentPageIndex+1000];
+        [myTabBar btnClick:btn];
+        
     }
 }
 

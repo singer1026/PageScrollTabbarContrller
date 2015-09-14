@@ -34,6 +34,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.parentViewController.parentViewController.navigationItem.title = @"First";
     if (CGRectIsEmpty(_tabbarDefaultFrame) ) {
         ViewController *vc = (ViewController *)self.parentViewController.parentViewController;
         _tabbarDefaultFrame = vc.tabBarController.tabBar.frame;
@@ -71,6 +72,14 @@
     cell.textLabel.text = @"first....";
     return cell;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UIViewController *vc = [[UIViewController alloc]init];
+    vc.view.backgroundColor = [UIColor blueColor];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 #pragma mark - scrollViewDelegate
 //- (void)scrollViewDidScroll:(UIScrollView *)scrollView

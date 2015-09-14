@@ -35,6 +35,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.parentViewController.parentViewController.navigationItem.title = @"Second";
     if (CGRectIsEmpty(_tabbarDefaultFrame) ) {
         ViewController *vc = (ViewController *)self.parentViewController.parentViewController;
         _tabbarDefaultFrame = vc.tabBarController.tabBar.frame;
@@ -54,6 +55,18 @@
     return 20;
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+//    __block CGRect tempFrame = cell.frame;
+//    tempFrame.origin.x+=50;
+//    cell.frame = tempFrame;
+//    [UIView animateWithDuration:0.25 animations:^{
+//        tempFrame.origin.x = 0;
+//        cell.frame = tempFrame;
+//    }];
+//    CABasicAnimation *am = [[CABasicAnimation alloc]init];
+//    [cell.layer addAnimation:am forKey:@""];
+}
+
 #pragma mark 每当有一个cell进入屏幕视野范围内就会被调用 返回当前这行显示的cell
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     //用static 只会初始化一次
@@ -70,6 +83,13 @@
     //覆盖数据
     cell.textLabel.text = @"second....";
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UIViewController *vc = [[UIViewController alloc]init];
+    vc.view.backgroundColor = [UIColor greenColor];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - scrollViewDelegate

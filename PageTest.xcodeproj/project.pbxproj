@@ -16,6 +16,8 @@
 		4619C86E1BA4A25A000EE1EE /* PageTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4619C86D1BA4A25A000EE1EE /* PageTestTests.m */; };
 		4619C8791BA4A273000EE1EE /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4619C8781BA4A273000EE1EE /* FirstViewController.m */; };
 		4619C87C1BA4A27E000EE1EE /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4619C87B1BA4A27E000EE1EE /* SecondViewController.m */; };
+		4691C3481BA6EA15009CDC63 /* MyTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4691C3471BA6EA15009CDC63 /* MyTabBarViewController.m */; };
+		4691C34B1BA6EA7D009CDC63 /* MyTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4691C34A1BA6EA7D009CDC63 /* MyTabBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,10 @@
 		4619C8781BA4A273000EE1EE /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		4619C87A1BA4A27E000EE1EE /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		4619C87B1BA4A27E000EE1EE /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		4691C3461BA6EA15009CDC63 /* MyTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTabBarViewController.h; sourceTree = "<group>"; };
+		4691C3471BA6EA15009CDC63 /* MyTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTabBarViewController.m; sourceTree = "<group>"; };
+		4691C3491BA6EA7D009CDC63 /* MyTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTabBar.h; sourceTree = "<group>"; };
+		4691C34A1BA6EA7D009CDC63 /* MyTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTabBar.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,10 @@
 				4619C8781BA4A273000EE1EE /* FirstViewController.m */,
 				4619C87A1BA4A27E000EE1EE /* SecondViewController.h */,
 				4619C87B1BA4A27E000EE1EE /* SecondViewController.m */,
+				4691C3461BA6EA15009CDC63 /* MyTabBarViewController.h */,
+				4691C3471BA6EA15009CDC63 /* MyTabBarViewController.m */,
+				4691C3491BA6EA7D009CDC63 /* MyTabBar.h */,
+				4691C34A1BA6EA7D009CDC63 /* MyTabBar.m */,
 			);
 			path = PageTest;
 			sourceTree = "<group>";
@@ -229,11 +239,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4691C3481BA6EA15009CDC63 /* MyTabBarViewController.m in Sources */,
 				4619C87C1BA4A27E000EE1EE /* SecondViewController.m in Sources */,
 				4619C85A1BA4A25A000EE1EE /* ViewController.m in Sources */,
 				4619C8571BA4A25A000EE1EE /* AppDelegate.m in Sources */,
 				4619C8541BA4A25A000EE1EE /* main.m in Sources */,
 				4619C8791BA4A273000EE1EE /* FirstViewController.m in Sources */,
+				4691C34B1BA6EA7D009CDC63 /* MyTabBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +440,7 @@
 				4619C8731BA4A25A000EE1EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4619C8741BA4A25A000EE1EE /* Build configuration list for PBXNativeTarget "PageTestTests" */ = {
 			isa = XCConfigurationList;
@@ -436,6 +449,7 @@
 				4619C8761BA4A25A000EE1EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
